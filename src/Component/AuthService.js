@@ -20,16 +20,16 @@ class Authservice{
         })
     }
     fetch(url, options){
-        const header = {
+        const headers = {
             'Accept': 'application/json',
             'Content-Type':'application/json'
         }
 
         if(this.loggedIn())
-            header['Authorization'] =  `Bearer ${this.getToken()}`
+            headers['Authorization'] =  `Bearer ${this.getToken()}`
 
         return fetch(url, {
-            header,
+            headers,
             ...options
         })
         .then(this._checkStatus)
