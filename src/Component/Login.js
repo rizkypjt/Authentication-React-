@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './Login.css';
+import AuthService from './AuthService';
 
 class Login extends Component {
     constructor(){
         super();
         this.handleChange = this.handleChange.bind(this);
+        this.Auth = new AuthService();
     }
     render() {
         return (
@@ -41,8 +43,10 @@ class Login extends Component {
         this.setState(
             {
                 [e.target.name]: e.target.value
-            }
-        )
+            })
+    }
+    handleFormSubmit(e){
+        e.preventDefault();
     }
 }
 
