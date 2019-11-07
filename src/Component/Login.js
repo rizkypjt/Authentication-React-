@@ -9,6 +9,12 @@ class Login extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.Auth = new AuthService();
     }
+
+    componentWillMount(){
+        if(this.Auth.loggedIn())
+            this.props.history.replace('/')
+    }
+
     render() {
         return (
             <div className="center">
@@ -58,4 +64,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Login; 
