@@ -7,8 +7,8 @@ class Routes extends Component {
     render() {
         return (
             <Router>
-                    {/* <Route path="/" exact component={App} /> */}
-                    <Route path="/" component={Login} />
+                    <Route path="/" exact component={App} />
+                    <Route path="/login" component={Login} />
             </Router>
         );
     }

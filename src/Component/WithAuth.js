@@ -1,5 +1,8 @@
 import React from 'react';
 import AuthService from './AuthService';
+import Login from './Login';
+
+
 
 function WithAuth(AuthComponent) {
     const Auth = new AuthService();
@@ -10,18 +13,21 @@ function WithAuth(AuthComponent) {
                 user:null
             }
         }
+
         componentWillMount() {
-            if(!Auth.loggedIn())
-                this.props.history.replace('/login')
-            else{
-                try{
+            if (!Auth.loggedIn()) {
+                // console.log('PROPSt',this.props);
+                this.props.history.replace('/login');
+            }
+            else {
+                try {
                     const profile = Auth.getProfile();
                     this.setState({
-                        user:profile
+                        user: profile
                     })
                 }
                 catch(err){
-                    Auth.logout();
+                    Auth.logout()
                     this.props.history.replace('/login')
                 }
             }

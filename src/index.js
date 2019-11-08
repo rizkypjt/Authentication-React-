@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import Routes from './Route/Routes';
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(<Routes />, document.getElementById('root'));
 
 
