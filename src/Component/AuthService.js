@@ -17,6 +17,7 @@ class Authservice{
                 password
             })
         }).then(res => {
+            console.log(res.token);
             this.setToken(res.token) // Setting the token in localStorage
             return Promise.resolve(res);
         })
@@ -27,10 +28,11 @@ class Authservice{
             'Content-Type':'application/json'
         }
 
-        console.log('TOKE',this.getToken());
 
-        if(this.loggedIn())
+        if(this.loggedIn()){
             headers['Authorization'] =  `Bearer ${this.getToken()}`
+        }
+            
 
         return fetch(url, {
             headers,
@@ -39,13 +41,15 @@ class Authservice{
         .then(this._checkStatus)
         .then(response => response.json())
     }
+    
+    setToken(idToken){
+        localStorage.setItem('id_token', idToken);
+    }
 
-    getToken(){
+     getToken(){
         return localStorage.getItem('id_token');
     }
-    setToken(idToken){
-        return localStorage.setItem('id_token', idToken);
-    }
+   
     loggedIn(){
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token)
